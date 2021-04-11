@@ -42,7 +42,7 @@ Another important configuration value is the *maximum frame duration*. Both part
 
 In the following, the initialization and execution of a basic particle simulation will be discussed. The simulation will consist of a basic swing-like construct. The swing is simulated by two particles connected by a rod and suspended in mid-air by two cables.
 
-![Possible visualization of the swing in Processing](images/particle_swing.png)
+![Possible visualization of the swing in Processing](particle_swing.png)
 
 ### Using Gaia to Simulate Particle Interactions
 
@@ -116,7 +116,7 @@ void draw() {
 
 In this example, we want to represent two different geometrical types of shapes and three different objects in total. Each of these objects requires a rigid body representation. As two of our shapes are rather similar - both are cuboids - their initialization is quite similar as well.
 
-![Rigid body collisions](images/body_collisions.png)
+![Rigid body collisions](body_collisions.png)
 
 ### Using Gaia to Simulate Rigid Body Dynamics
 

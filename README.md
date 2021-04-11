@@ -4,7 +4,7 @@ A 3D physics engine for [Processing](https://processing.org/), based on the [Cyc
 
 The physics engine is a real-time engine, supporting both particles and rigid bodies. Similar to [toxiclibs](http://toxiclibs.org/about/), the engine attempts to work with a coordinate system roughly equivalent to the one used by Processing in order to minimize value conversion when providing the engine with data or retrieving it from Gaia.
 
-In order to support both particles and rigid bodies, Gaia is made up of two smaller engines. While these two engines have very different capabilities, their structural makeup is very similar for the most part. Refer to the separate [guide document](GUIDE.md) for further details regarding structure, features and limitations of the engine.
+In order to support both particles and rigid bodies, Gaia is made up of two smaller engines. While these two engines have very different capabilities, their structural makeup is very similar for the most part. Refer to the separate [guide document](guide/GUIDE.md) for further details regarding structure, features and limitations of the engine.
 
 The main focus of the engine is collision detection and resolution between simple geometric shapes - planes, spheres and boxes. The resolution follows a sequential pattern, which works well for simulations inhabited by only a few bodies. The strategy of the resolution is impulse-based, meaning bodies in resting contacts are kept in position by tiny collisions which occur during each integration step.
 
@@ -51,7 +51,7 @@ For using the Gaia physics engine in Processing, copy the `gaia` folder to the `
 
 ## Usage
 
-Check out the examples found in `PROJECT_ROOT/lib/src/examples` or refer to the [guide](GUIDE.md) for information on how to utilize the Gaia physics engine in your own projects.
+Check out the examples found in `PROJECT_ROOT/lib/src/examples` or refer to the [guide](guide/GUIDE.md) for information on how to utilize the Gaia physics engine in your own projects.
 
 ## Contributing
 
