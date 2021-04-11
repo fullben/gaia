@@ -1,0 +1,115 @@
+plugins {
+    // Apply the java-library plugin for API and implementation separation.
+    id 'java-library'
+}
+
+version = '0.2.0'
+sourceCompatibility = JavaVersion.VERSION_11
+// The following properties will be used for library description file, see https://github.com/processing/processing/wiki/Library-Basics#describing-your-library--libraryproperties
+ext {
+    libName = rootProject.name.capitalize()
+    libNameLowerCase = libName.toLowerCase() // Used internally for naming directories and files
+    libAuthors = 'Benedikt Full'
+    libUrl = ''
+    libCategories = '3D, Animation, Simulation'
+    libSentence = "A basic 3D physics engine based on Ian Millington's Cyclone engine."
+    libParagraph = 'It is capable of simulating particles, rigid bodies, and their reactions to forces and collisions.'
+    libVersion = version
+    libPrettyVersion = version
+    libMinRevision = '0'
+    libMaxRevision = '0'
+}
+
+repositories {
+    // Use JCenter for resolving dependencies
+    jcenter()
+    // Use local dir for Processing and Processing library dependencies
+    flatDir {
+        dir 'dependencies/processing-core'
+    }
+}
+
+configurations {
+    exampleImplementation.extendsFrom implementation
+}
+
+dependencies {
+    // Use JUnit Jupiter API for testing
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.2'
+    // Use JUnit Jupiter Engine for testing
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
+    // Use local Processing jars
+    implementation name: 'core'
+    implementation name: 'jogl-all'
+    implementation name: 'gluegen-rt'
+}
+
+tasks.named('test') {
+    // Use junit platform for unit tests.
+    useJUnitPlatform()
+}
+
+sourceSets {
+    examples {
+        // Support auto-detection and creation of subdirs
+        java
+        resources
+        // Configure classpath
+        compileClasspath += sourceSets.main.runtimeClasspath
+        compileClasspath += configurations.exampleImplementation
+        runtimeClasspath += sourceSets.main.runtimeClasspath
+        runtimeClasspath += configurations.exampleImplementation
+    }
+}
+
+task buildProcessingLib(dependsOn: [jar, javadoc]) {
+    outputs.dir("$buildDir$File.separator$project.ext.libNameLowerCase")
+    doLast {
+        // Create the expected directory hierarchy
+        File libBaseDir = mkdir("$buildDir$File.separator$project.ext.libNameLowerCase")
+        File jarDir = mkdir("$libBaseDir${File.separator}library")
+        File refDir = mkdir("$libBaseDir${File.separator}reference")
+        File srcDir = mkdir("$libBaseDir${File.separator}src")
+        File examplesDir = mkdir("$libBaseDir${File.separator}examples")
+        // Create the library description file, see https://github.com/processing/processing/wiki/Library-Basics#describing-your-library--libraryproperties
+        new File(libBaseDir, 'library.properties').text = """name=${project.ext.libName}
+authors=${project.ext.libAuthors}
+url=${project.ext.libUrl}
+categories=${project.ext.libCategories}
+sentence=${project.ext.libSentence}
+paragraph=${project.ext.libParagraph}
+version=${project.ext.libVersion}
+prettyVersion=${project.ext.libPrettyVersion}
+minRevision=${project.ext.libMinRevision}
+maxRevision=${project.ext.libMaxRevision}
+"""
+        // Copy the library jar
+        copy {
+            libName = "lib-${version}.jar"
+            from "$buildDir${File.separator}libs${File.separator}$libName"
+            into "$jarDir${File.separator}"
+            rename(libName, "${project.ext.libNameLowerCase}.jar")
+        }
+        // Copy the library javadoc
+        copy {
+            from "$buildDir${File.separator}docs${File.separator}javadoc"
+            into refDir
+        }
+        // Copy the library source code
+        copy {
+            from project.sourceSets.main.java
+            into srcDir
+        }
+    }
+}
+
+task processingLib(type: Zip, dependsOn: buildProcessingLib) {
+    archiveFileName = "${project.ext.libNameLowerCase}.zip"
+    destinationDirectory = file("$buildDir${File.separator}libs")
+    from "$buildDir${File.separator}${project.ext.libNameLowerCase}"
+}
+
+configure(processingLib) {
+    group = 'build'
+    description = 'Build and package the Processing library zip archive'
+}
