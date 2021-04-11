@@ -3,7 +3,7 @@ plugins {
     id 'java-library'
 }
 
-version = '0.1.0'
+version = '0.2.0'
 sourceCompatibility = JavaVersion.VERSION_11
 // The following properties will be used for library description file, see https://github.com/processing/processing/wiki/Library-Basics#describing-your-library--libraryproperties
 ext {
