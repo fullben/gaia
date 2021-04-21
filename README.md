@@ -1,6 +1,6 @@
 # Gaia
 
-A 3D physics engine for [Processing](https://processing.org/), based on the [Cyclone physics engine](https://github.com/idmillington/cyclone-physics) by Ian Millington. It was created in order to provide users of Processing with an engine capable of supporting basic collision dynamics for simple 3D bodies. Development began as part of my bachelor's thesis in early 2018. Initially, the project went by the name of *eos*, which was changed to *Gaia* (greek primordial deity representing Earth) in early 2021.
+A 3D physics engine for [Processing](https://processing.org/), based on the [Cyclone physics engine](https://github.com/idmillington/cyclone-physics) by Ian Millington. Gaia was created in order to provide users of Processing with an engine capable of supporting basic collision dynamics for simple 3D bodies. Development began as part of my bachelor's thesis in early 2018. Initially, the project went by the name of *eos*, which was changed to *Gaia* (greek primordial deity representing Earth) in early 2021.
 
 The physics engine is a real-time engine, supporting both particles and rigid bodies. Similar to [toxiclibs](http://toxiclibs.org/about/), the engine attempts to work with a coordinate system roughly equivalent to the one used by Processing in order to minimize value conversion when providing the engine with data or retrieving it from Gaia.
 
@@ -43,11 +43,11 @@ The project contains a number of Gaia usage examples implemented in Java, locate
 
 ### Build Gaia as Processing Library
 
-Use the Gradle task `processingLib` to build the project. This will generate a library build of Gaia adhering to the [Processing library guidelines](https://github.com/processing/processing/wiki/Library-Guidelines). The build result can be found in `PROJECT_ROOT/lib/build/gaia`.
+Use the Gradle task `processingLib` to build the project. This will generate a library build of Gaia adhering to the [Processing library guidelines](https://github.com/processing/processing/wiki/Library-Guidelines). The build will result in the creation of the archive `PROJECT_ROOT/lib/build/lib/gaia.zip`.
 
 Note that even though the project does feature examples, the `examples` directory of the built library will always be empty. This is due to the fact that the examples provided with the library are implemented in Java, featuring inheritance, which is difficult to map to Processing sketches.
 
-For using the Gaia physics engine in Processing, copy the `gaia` folder to the `libraries` folder found in your [Sketchbook](https://processing.org/reference/environment/#Sketchbook).
+For using the Gaia physics engine in Processing, unzip the `gaia.zip` archive and copy the contents to the `libraries` folder found in your [Sketchbook](https://processing.org/reference/environment/#Sketchbook). Check out the [contributed library installation guide](https://github.com/processing/processing/wiki/How-to-Install-a-Contributed-Library) for more details on how to manually install a Processing library.
 
 ## Usage
 
