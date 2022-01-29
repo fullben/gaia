@@ -1,6 +1,6 @@
 # Gaia
 
-A 3D physics engine for [Processing](https://processing.org/), based on the [Cyclone physics engine](https://github.com/idmillington/cyclone-physics) by Ian Millington. Gaia was created in order to provide users of Processing with an engine capable of supporting basic collision dynamics for simple 3D bodies. Development began as part of my bachelor's thesis in early 2018. Initially, the project went by the name of *eos*, which was changed to *Gaia* (greek primordial deity representing Earth) in early 2021.
+A 3D physics engine for [Processing](https://processing.org/), based on the [Cyclone physics engine](https://github.com/idmillington/cyclone-physics) by Ian Millington. Gaia was created in order to provide users of Processing with an engine capable of supporting basic collision dynamics for simple 3D bodies. Development began as part of my bachelor's thesis in early 2018. Initially, the project went by the name of *eos*, which was changed to *Gaia* (greek primordial deity representing Earth) in early 2021. Check the [release notes](RELEASES.md) for all major changes to the engine.
 
 The physics engine is a real-time engine, supporting both particles and rigid bodies. Similar to [toxiclibs](http://toxiclibs.org/about/), the engine attempts to work with a coordinate system roughly equivalent to the one used by Processing in order to minimize value conversion when providing the engine with data or retrieving it from Gaia.
 
