@@ -5,6 +5,8 @@ import de.fullben.processing.gaia.math.Matrix3;
 import de.fullben.processing.gaia.math.Matrix4;
 import de.fullben.processing.gaia.math.Quaternion;
 import de.fullben.processing.gaia.math.Vector3D;
+import de.fullben.processing.gaia.rigidbodies.RigidBodyBuilder.Builder;
+import de.fullben.processing.gaia.rigidbodies.RigidBodyBuilder.ShapeStep;
 
 /**
  * A rigid body is the basic simulation object in the physics engine.
@@ -85,6 +87,22 @@ public class RigidBody {
   private boolean isAwake;
 
   /**
+   * Creates and returns a step builder for convenient creation of rigid bodies for simple shapes
+   * such as cubes or spheres.
+   *
+   * <p><b>Note:</b> This approach for creating rigid bodies should be preferred over direct
+   * constructor usage, as constructor usage will almost always require additional body
+   * configuration after instantiation. Using the builder avoids this two-step object instantiation,
+   * as the builder ensures that all necessary configuration has been completed before returning the
+   * built rigid body.
+   *
+   * @return the first step of the builder
+   */
+  public static ShapeStep builder() {
+    return new Builder();
+  }
+
+  /**
    * Creates a new rigid body. The body's properties will default to the following values:
    *
    * <ul>
@@ -97,6 +115,9 @@ public class RigidBody {
    *   <li>Inertia behavior: 1 meter cube (Use one of the {@code setInertiaTensor...} methods to
    *       change the behavior)
    * </ul>
+   *
+   * @see #RigidBody(Vector3D, Quaternion)
+   * @see RigidBody#builder()
    */
   public RigidBody() {
     this(new Vector3D(), new Quaternion());
@@ -119,6 +140,8 @@ public class RigidBody {
    *
    * @param position the location of the body's center of mass
    * @param orientation the orientation of the body
+   * @see #RigidBody()
+   * @see RigidBody#builder()
    */
   public RigidBody(Vector3D position, Quaternion orientation) {
     this.position = position;

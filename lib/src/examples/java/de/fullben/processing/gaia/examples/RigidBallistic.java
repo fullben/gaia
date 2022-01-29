@@ -71,18 +71,26 @@ public class RigidBallistic extends Example {
     double x = 2;
     double y = 2.5;
     double z = 2;
-    cuboid = new RigidBody();
-    cuboid.setPosition(0, 0.5, 0);
-    cuboid.setMass((x / 2.0) * (y / 2.0) * (z / 2.0) * 5);
-    cuboid.setInertiaTensorCuboid(x, y, z);
+    cuboid =
+        RigidBody.builder()
+            .cuboid(x, y, z)
+            .mass((x / 2.0) * (y / 2.0) * (z / 2.0) * 5)
+            .position(0, 0.5, 0)
+            .defaultOrientation()
+            .resting()
+            .build();
     // Second cuboid
     double xB = 1.5;
     double yB = 2;
     double zB = 1.5;
-    cuboidB = new RigidBody();
-    cuboidB.setPosition(0, -3, 0);
-    cuboidB.setMass((xB / 2.0) * (yB / 2.0) * (zB / 2.0) * 2);
-    cuboidB.setInertiaTensorCuboid(xB, yB, zB);
+    cuboidB =
+        RigidBody.builder()
+            .cuboid(xB, yB, zB)
+            .mass((xB / 2.0) * (yB / 2.0) * (zB / 2.0) * 2)
+            .position(0, -3, 0)
+            .defaultOrientation()
+            .resting()
+            .build();
     world.addRigidBody(cuboid, x, y, z);
     world.addRigidBody(cuboidB, xB, yB, zB);
     world.addForce(gravity);
@@ -260,6 +268,15 @@ public class RigidBallistic extends Example {
   private void fireProjectile() {
     if (mouseDown) {
       double radius = 0.3;
+      RigidBody.builder()
+          .sphere(radius)
+          .solid()
+          .mass((4.0 / 3.0) * PI * (radius * radius * radius) * 2)
+          .position(0, -0.75, 4.5)
+          .defaultOrientation()
+          .velocity(random(0.1f, 0.5f), random(0, 0.5f), -20)
+          .noAcceleration()
+          .build();
       RigidBody s = new RigidBody();
       s.setDamping(0.8, 0.8);
       s.setPosition(0, -0.75, 4.5);
