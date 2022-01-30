@@ -26,9 +26,9 @@ public class Configuration {
    * Returns the current global configuration object used by the library.
    *
    * @return the current configuration
-   * @see #setConfig(Configuration)
+   * @see #update(Configuration)
    */
-  public static Configuration getConfig() {
+  public static Configuration current() {
     return configuration;
   }
 
@@ -36,9 +36,9 @@ public class Configuration {
    * Sets the given configuration as the global configuration object used by the library.
    *
    * @param config a non-{@code null} configuration
-   * @see #getConfig()
+   * @see #current()
    */
-  public static void setConfig(Configuration config) {
+  public static void update(Configuration config) {
     configuration = requireNonNull(config, "Configuration must not be null");
   }
 

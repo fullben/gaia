@@ -521,7 +521,7 @@ public class Vector3D {
    * @return a scaled version of the vector's quantity on the {@code x} axis
    */
   public float x() {
-    return (float) (x * Configuration.getConfig().getProcessingFactor());
+    return (float) (x * Configuration.current().getProcessingFactor());
   }
 
   /**
@@ -534,7 +534,7 @@ public class Vector3D {
    * @return a scaled version of the vector's quantity on the {@code y} axis
    */
   public float y() {
-    return (float) (y * Configuration.getConfig().getProcessingFactor());
+    return (float) (y * Configuration.current().getProcessingFactor());
   }
 
   /**
@@ -547,7 +547,7 @@ public class Vector3D {
    * @return a scaled version of the vector's quantity on the {@code z} axis
    */
   public float z() {
-    return (float) (z * Configuration.getConfig().getProcessingFactor());
+    return (float) (z * Configuration.current().getProcessingFactor());
   }
 
   @Override

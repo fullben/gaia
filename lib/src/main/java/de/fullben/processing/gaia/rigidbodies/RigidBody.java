@@ -319,10 +319,10 @@ public class RigidBody {
           velocity.scalarProduct(velocity) + angularVelocity.scalarProduct(angularVelocity);
       double bias = Math.pow(0.5, duration);
       motion = bias * motion + (1 - bias) * currentMotion;
-      if (motion < Configuration.getConfig().getSleepEpsilon()) {
+      if (motion < Configuration.current().getSleepEpsilon()) {
         setIsAwake(false);
-      } else if (motion > 10 * Configuration.getConfig().getSleepEpsilon()) {
-        motion = 10 * Configuration.getConfig().getSleepEpsilon();
+      } else if (motion > 10 * Configuration.current().getSleepEpsilon()) {
+        motion = 10 * Configuration.current().getSleepEpsilon();
       }
     }
   }
@@ -903,7 +903,7 @@ public class RigidBody {
     if (isAwake) {
       this.isAwake = true;
       // Add a bit of motion to avoid it falling asleep immediately
-      motion = Configuration.getConfig().getSleepEpsilon() * 2.0f;
+      motion = Configuration.current().getSleepEpsilon() * 2.0f;
     } else {
       this.isAwake = false;
       velocity.clear();

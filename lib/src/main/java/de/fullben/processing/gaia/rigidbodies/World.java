@@ -74,7 +74,7 @@ public class World {
    *
    * <p>Note that this method has no effect if the provided duration exceeds the maximum frame
    * duration value specified in the global configuration (available at {@link
-   * Configuration#getConfig()}), as processing the physics for longer durations generally only
+   * Configuration#current()}), as processing the physics for longer durations generally only
    * produces undesirable results.
    *
    * @see #update(double)
@@ -91,7 +91,7 @@ public class World {
    *
    * <p>Note that this method has no effect if the provided duration exceeds the maximum frame
    * duration value specified in the global configuration (available at {@link
-   * Configuration#getConfig()}), as processing the physics for longer durations generally only
+   * Configuration#current()}), as processing the physics for longer durations generally only
    * produces undesirable results.
    *
    * @param durationMillis duration in milliseconds which has elapsed since the last time the world
@@ -116,7 +116,7 @@ public class World {
    */
   private void runPhysics(double duration) {
     // Validate duration
-    if (duration <= 0 || duration > Configuration.getConfig().getMaxFrameDuration()) {
+    if (duration <= 0 || duration > Configuration.current().getMaxFrameDuration()) {
       System.err.println("Attempted to run physics with unsafe frame duration: " + duration + "s");
       return;
     }
