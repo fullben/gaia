@@ -225,6 +225,14 @@ public class RigidBodyBuilder {
     FillStep sphere(double radius);
 
     /**
+     * Defines the shape of the body as a hemisphere with the given radius.
+     *
+     * @param radius the radius in meters
+     * @return the step for defining the hemisphere's mass
+     */
+    MassStep hemisphere(double radius);
+
+    /**
      * Defines the shape of the body as a cylinder with the given properties.
      *
      * @param height the height in meters
@@ -232,14 +240,6 @@ public class RigidBodyBuilder {
      * @return the step for defining whether the cylinder is hollow or solid
      */
     FillStep cylinder(double height, double radius);
-
-    /**
-     * Defines the shape of the body as a hemisphere with the given radius.
-     *
-     * @param radius the radius in meters
-     * @return the step for defining the hemisphere's mass
-     */
-    MassStep hemisphere(double radius);
 
     /**
      * Defines the shape of the body as an ellipsoid with the given dimensions.
