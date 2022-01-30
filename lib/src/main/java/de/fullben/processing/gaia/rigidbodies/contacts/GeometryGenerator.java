@@ -50,9 +50,9 @@ public class GeometryGenerator {
    * @param radius the radius of the sphere
    * @return a list containing one {@link CollisionSphere} object
    */
-  public static ArrayList<CollisionGeometry> generateCollisionGeometry(
+  public static List<CollisionGeometry> generateCollisionGeometry(
       RigidBody rigidBody, double radius) {
-    ArrayList<CollisionGeometry> geometries = new ArrayList<>();
+    List<CollisionGeometry> geometries = new ArrayList<>();
     geometries.add(new CollisionSphere(rigidBody, radius));
     return geometries;
   }
@@ -67,7 +67,7 @@ public class GeometryGenerator {
    * @param zDim the cuboid's width on the z axis
    * @return a list containing one {@link CollisionBox} object
    */
-  public static ArrayList<CollisionGeometry> generateCollisionGeometry(
+  public static List<CollisionGeometry> generateCollisionGeometry(
       RigidBody rigidBody, double xDim, double yDim, double zDim) {
     ArrayList<CollisionGeometry> geometries = new ArrayList<>();
     geometries.add(new CollisionBox(rigidBody, new Vector3D(xDim / 2.0, yDim / 2.0, zDim / 2.0)));
