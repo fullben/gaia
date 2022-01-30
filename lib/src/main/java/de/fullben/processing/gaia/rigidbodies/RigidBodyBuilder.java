@@ -188,6 +188,7 @@ public class RigidBodyBuilder {
      * @param z edge length along the z axis in meters
      * @return the step for defining the cuboid's mass
      * @see #cube(double)
+     * @see #defaultRestingCube()
      */
     MassStep cuboid(double x, double y, double z);
 
@@ -197,6 +198,7 @@ public class RigidBodyBuilder {
      * @param edgeLength the length of the cube's edges in meters
      * @return the step for defining the cube's mass
      * @see #cuboid(double, double, double)
+     * @see #defaultRestingCube()
      */
     default MassStep cube(double edgeLength) {
       return cuboid(edgeLength, edgeLength, edgeLength);
@@ -207,6 +209,8 @@ public class RigidBodyBuilder {
      * origin, default orientation, and resting.
      *
      * @return the step for building the body object
+     * @see #cuboid(double, double, double)
+     * @see #cube(double)
      */
     default FinalStep defaultRestingCube() {
       return cube(1).mass(1).locatedAtOrigin().defaultOrientation().resting();
@@ -267,6 +271,7 @@ public class RigidBodyBuilder {
      * Defines the body as a solid object, meaning its mass is evenly distributed.
      *
      * @return the step for defining the body's mass
+     * @see #hollow()
      */
     default MassStep solid() {
       return solid(true);
@@ -279,6 +284,7 @@ public class RigidBodyBuilder {
      * assumptions about what parts of the body are actually hollow.
      *
      * @return the step for defining the body's mass
+     * @see #solid()
      */
     default MassStep hollow() {
       return solid(false);

@@ -52,10 +52,10 @@ public class Quaternion {
    * @param source the quaternion this object will be a copy of
    */
   public Quaternion(Quaternion source) {
-    r = source.getR();
-    i = source.getI();
-    j = source.getJ();
-    k = source.getK();
+    r = source.r;
+    i = source.i;
+    j = source.j;
+    k = source.k;
   }
 
   /** Constructs a new {@code Quaternion} and sets all its components to zero. */
